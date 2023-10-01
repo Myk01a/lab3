@@ -1,17 +1,55 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Create a list of route numbers
+        List<String> routeNumbers = Arrays.asList("Route1", "Route2", "Route3");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        // Create an array of Hour objects
+        Hour[] hours = {
+                new Hour("09:00", 50, "Comment A"),
+                new Hour("10:00", 30, "Comment Z"),
+                new Hour("11:00", 40, "Comment C looooong"),
+                new Hour("12:00", 60, "Comment B midle"),
+                new Hour("13:00", 25, "Comment E")
+        };
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        // Create an instance of TramStopImpl
+        TramStopImpl tramStopImpl = new TramStopImpl("Tram Stop 1", routeNumbers, hours);
+
+        // Create an instance of TramStopImpl2
+        TramStopImpl2 tramStopImpl2 = new TramStopImpl2("Tram Stop 2", routeNumbers, hours);
+
+        // Testing methods of TramStopImpl
+        System.out.println("Testing methods of TramStopImpl:");
+        System.out.println("Total Passenger Count: " + tramStopImpl.findByTotalPassengerCount());
+        System.out.println("Hour with Min Passenger Count: " + tramStopImpl.findHourWithMinPassengerCount());
+        System.out.println("Longest Comment: " + tramStopImpl.findLongestComment());
+        System.out.println();
+
+        // Sorting by Number of Passengers using TramStopImpl
+        tramStopImpl.sortByNumberPassengers();
+        tramStopImpl.printListHour("passenger");
+        System.out.println();
+
+        tramStopImpl.sortByComment();
+        tramStopImpl.printListHour("comment");
+        System.out.println();
+
+        // Testing methods of TramStopImpl2
+        System.out.println("\nTesting methods of TramStopImpl2:");
+        System.out.println("Total Passenger Count: " + tramStopImpl2.findByTotalPassengerCount());
+        System.out.println("Hour with Min Passenger Count: " + tramStopImpl2.findHourWithMinPassengerCount());
+        System.out.println("Longest Comment: " + tramStopImpl2.findLongestComment());
+        System.out.println();
+
+        // Sorting by Comment using TramStopImpl2
+        tramStopImpl2.sortByComment();
+        tramStopImpl.printListHour("comment");
+        System.out.println();
+
+        tramStopImpl2.sortByNumberPassengers();
+        tramStopImpl.printListHour("passenger");
     }
 }
